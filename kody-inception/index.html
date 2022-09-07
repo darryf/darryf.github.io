@@ -4,8 +4,236 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>kody-inception</title>
+  <base href="/kody-inception/" />
 </head>
-  <body>
-    <h4>kody-inception</h4>
-  </body>
+<body>
+
+<div id="buttons">
+  <!-- svg icons from mudblazor -->
+  <button onclick="action(0)">
+    <svg viewBox="0 0 24 24">
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+    </svg>
+  </button>
+  <button onclick="action(1)" id="play" style="display:none">
+    <svg viewBox="0 0 24 24">
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M8 5v14l11-7z"></path>
+    </svg>
+  </button>
+  <button onclick="action(2)" id="stop">
+    <svg viewBox="0 0 24 24">
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M6 6h12v12H6z"></path>
+    </svg>
+  </button>
+  <button onclick="action(3)">
+    <svg viewBox="0 0 24 24">
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+    </svg>
+  </button>
+</div>
+
+<div id="container">
+  <div id="i12">
+    <div id="i11">
+      <div id="i10">
+        <div id="i9">
+          <div id="i8">
+            <div id="i7">
+              <div id="i6">
+                <div id="i5">
+                  <div id="i4">
+                    <div id="i3">
+                      <div id="i2">
+                        <div id="i1">
+                          <img id="x1" src="images/1.jpg" />
+                        </div>
+                        <img id="x2" src="images/2.jpg" />
+                      </div>
+                      <img id="x3" src="images/3.jpg" />
+                    </div>
+                    <img id="x4" src="images/4.jpg" />
+                  </div>
+                  <img id="x5" src="images/5.jpg" />
+                </div>
+                <img id="x6" src="images/6.jpg" />
+              </div>
+              <img id="x7" src="images/7.jpg" />
+            </div>
+            <img id="x8" src="images/8.jpg" />
+          </div>
+          <img id="x9" src="images/9.jpg" />
+        </div>
+        <img id="x10" src="images/10.jpg" />
+      </div>
+      <img id="x11" src="images/11.jpg" />
+    </div>
+    <img id="x12" src="images/12.jpg" />
+  </div>
+</div>
+
+<style>
+body {
+  user-select: none;
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+}
+
+#buttons {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -380px;
+  margin-left: -91px;
+}
+
+button {
+  background: #1e90ff;
+  border: none;
+  border-radius: 5rem;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 25%);
+  color: #fff;
+  cursor: pointer;
+  height: 57px;
+  padding: 4px;
+}
+
+svg {
+  height: 50px;
+  fill: white;
+}
+
+#container {
+  position:relative;
+  margin: auto;
+  top: 50%;
+  margin-top: -314px;
+  width: 800px;
+  height:626px;
+  overflow: clip;
+  border: 1px solid #1e90ff;
+}
+
+#container div {
+  z-index: 2;
+}
+
+#container img {
+  z-index: 1;
+}
+
+#container div, #container img {
+  transition: transform .6s ease;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 800px;
+  height:626px;
+  transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+}
+</style>
+
+<script type="text/javascript">
+  // transform matrices were computed using this:
+  // https://math.stackexchange.com/questions/296794/finding-the-transform-matrix-from-4-projected-points-with-javascript/339033#339033
+  var m = [
+    "0.3371406011762143, -0.01074847527771727, 0, 0.00006452842517969941, -0.005146198667625156, 0.21855964893112861, 0, -0.0001715399555875052, 0, 0, 1, 0, 30, 139, 0, 1",
+    "0.26251496010638303, 0.009420711436170199, 0, -0.00002368683510638298, -0.06996173144245803, 0.20423359858269322, 0, -0.00012559691727278906, 0, 0, 1, 0, 100, 120, 0, 1",
+    "0.30250039123630673, -0.02423056859676578, 0, 0.00004121022430881586, -0.012116575919842805, 0.1954196603118891, 0, -0.00015907776561153693, 0, 0, 1, 0, 40, 164, 0, 1",
+    "0.2703707828919068, -0.010340748479075753, 0, 0.000010216309223867756, -0.026004579608041624, 0.197010512915708, 0, -0.00012427728244653082, 0, 0, 1, 0, 67, 98, 0, 1",
+    "0.22868171066687012, -0.017155501297115825, 0, 0.0000040057988707462235, -0.05096902182206623, 0.17418649312633436, 0, -0.00015808675293953601, 0, 0, 1, 0, 113, 100, 0, 1",
+    "0.239723370289117, -0.012300154744182395, 0, 0.000010430541408759696, -0.03617103803701745, 0.17030302248988005, 0, -0.00011758980819906984, 0, 0, 1, 0, 144, 150, 0, 1",
+    "0.2567774392204786, 0.001150590108052468, 0, 0.000008160213532287111, -0.0476224919470242, 0.20424311068845033, 0, -0.00009575623175802688, 0, 0, 1, 0, 168, 141, 0, 1",
+    "0.23065617417093556, -0.022533364788352647, 0, -0.000011458614181720138, -0.027058781980107104, 0.17740157134403234, 0, -0.00011111905502288277, 0, 0, 1, 0, 83, 128.99999999999997, 0, 1",
+    "0.2445139286737324, -0.013137532225723279, 0, 0.000009220137496419364, -0.03488591842281796, 0.1768529848089519, 0, -0.00011542688959194936, 0, 0, 1, 0, 161, 214.00000000000003, 0, 1",
+    "0.24597838315654133, -0.018672050787528146, 0, 0.000035760205721632915, -0.011732048394699627, 0.17598072592049444, 0, -0.00009858864197226578, 0, 0, 1, 0, 119.00000000000001, 161, 0, 1",
+    "0.15897154795065654, 0.008115200955033876, 0, 0.000023278949462793475, -0.02048313625378066, 0.1264473936806561, 0, -0.0000624230042119636, 0, 0, 1, 0, 156, 458, 0, 1"
+  ], 
+  m2 = [
+    "3.2921858572499363, 0.2677973876488482, 0, -0.00016650161678348374, 0, 4.552555590030419, 0, 0.0007809451837234668, 0, 0, 1, 0, -98.7655757174981, -640.8391486436938, 0, 1",
+    "4.040744986781458, -0.22595078118514084, 0, 0.00006733373863660388, 1.0576446609696435, 4.880536873599042, 0, 0.0006380326406457497, 0, 0, 1, 0, -530.9918579945031, -563.069346713371, 0, 1",
+    "3.7658093076593215, 0.5268370329610512, 0, -0.00007138178822801153, 0.09781322877037199, 5.114709528330206, 0, 0.0008096056584208104, 0, 0, 1, 0, -166.67374182471386, -859.8858439645957, 0, 1",
+    "3.947200149765091, 0.21401119132186533, 0, -0.000013729088027871288, 0.33356620983930346, 5.088710549208797, 0, 0.0006290033026663109, 0, 0, 1, 0, -297.15189859851284, -513.0323836410272, 0, 1",
+    "4.876814636158616, 0.4506312154383526, 0, 0.000051703287059482836, 0.8497480047852135, 5.858205800698584, 0, 0.0009227008134860064, 0, 0, 1, 0, -636.054854364445, -636.7419074143922, 0, 1",
+    "4.65424001366394, 0.3433505160876476, 0, -0.00000817172185702989, 0.47641826911520646, 5.8993861400514, 0, 0.0006887383842169993, 0, 0, 1, 0, -741.6733023348884, -934.3503953243312, 0, 1",
+    "4.147533309365513, 0, 0, -0.000033844757436696, 0.6006772379081087, 4.864903125071499, 0, 0.00046094313659938107, 0, 0, 1, 0, -781.4810865184495, -685.9513406350814, 0, 1",
+    "4.756648095428009, 0.522344425475279, 0, 0.00011254701427900709, 0.44247889259795425, 5.7457886802280695, 0, 0.0006435368034219545, 0, 0, 1, 0, -451.88156906566076, -784.561327063869, 0, 1",
+    "4.71089721180855, 0.3531786013957915, 0, -0.000002668812594822332, 0.38102845095510335, 5.68028917244898, 0, 0.0006521449764507601, 0, 0, 1, 0, -839.9945396055687, -1272.4436377288043, 0, 1",
+    "4.454624001548094, 0.5672244119819826, 0, -0.00010337638623706281, 0, 5.612536286979617, 0, 0.0005533323305533835, 0, 0, 1, 0, -530.1002561842232, -971.1180472295744, 0, 1",
+    "7.649444691979314, 0.1256457330691648, 0, -0.0001702278522784285, 0.5301595331074772, 7.664389717219053, 0, 0.0004660926746216683, 0, 0, 1, 0, -1436.1264381119977, -3529.8912248451156, 0, 1"
+  ],
+  tmr, dir = 1, i = 0;
+   
+  function project(e, t) {
+    if (!e) return;
+    e.style["-webkit-transform"] = t;
+    e.style["-moz-transform"] = t;
+    e.style["-o-transform"] = t;
+    e.style.transform = t;
+  }
+
+  function update() {
+    i += dir;
+    if (i < 0) i = 0;
+    if (i > 11) {
+      i = 11;
+      dir = -1; // invert direction
+      update();
+      return;
+    }
+
+    if (dir > 0) {
+      project(document.getElementById("i" + i), `matrix3d(${m[(i - 1)]})`);
+      project(document.getElementById("x" + (i + 1)), "");
+      project(document.getElementById("x" + (i + 2)), `matrix3d(${m2[i]})`);
+      if (i == 11) dir = -1; // invert direction
+    }
+    else {
+      project(document.getElementById("i" + (i + 1)), "");
+      project(document.getElementById("x" + (i + 2)), `matrix3d(${m2[i]})`);
+      if (!i) dir = 1; // invert direction
+    }
+  }
+
+  function start() {
+    tmr = setInterval(update, 2000);
+  }
+
+  function action(e) {
+    switch (e) {
+      case 0: // prev
+        dir = 0 - dir; // invert direction
+        update();
+        dir = 0 - dir; // invert direction
+        break;
+  
+      case 1: // play
+        document.getElementById("play").style.display = "none";
+        document.getElementById("stop").style.display = "inline";
+        start();
+        break;
+  
+      case 2: // stop
+        document.getElementById("play").style.display = "inline";
+        document.getElementById("stop").style.display = "none";
+        clearInterval(tmr);
+        break;
+  
+      case 3: // next
+        update();
+        break;
+    }
+  }
+
+  project(document.getElementById("x2"), `matrix3d(${m2[0]})`);
+  window.addEventListener("load", start);
+</script>
+</body>
 </html>
